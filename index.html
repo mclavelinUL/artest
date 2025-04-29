@@ -34,12 +34,13 @@
     </style>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-      <!-- Caméra AR (fourni par AR.js via a-marker-camera ou a-entity camera) -->
-      <a-marker type="pattern" url="/pattern-gdb.patt">
-        <a-box position="0 0.5 0" rotation="0 45 0" color="red"></a-box>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
+    <a-scene embedded arjs="trackingMethod: best;">
+        <!-- Anchor NFT pour l'image "trex" -->
+        <a-nft type="nft" url="gdb" smooth="true">
+            <a-box position="0 0.5 0" rotation="0 45 0" color="red"></a-box>
+        </a-nft>
+        <a-entity camera></a-entity>
+      </a-scene>
+      
   </body>
 </html>
