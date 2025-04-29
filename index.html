@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
     <title>Document</title>
     <!-- import aframe and then ar.js with image tracking / location based features -->
-    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <!-- Import A-Frame (version compatible avec AR.js) -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- Import AR.js (build incluant suivi de marqueur + image + location) -->
+    <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar-nft.js"></script>
 
     <!-- style for the loader -->
     <style>
-    .arjs-loader {
+    /* .arjs-loader {
         height: 100%;
         width: 100%;
         position: absolute;
@@ -27,42 +30,15 @@
         text-align: center;
         font-size: 1.25em;
         color: white;
-    }
+    } */
     </style>
 </head>
-<body style="margin : 0px; overflow: hidden;">
-    <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
-    <div class="arjs-loader">
-      <div>Loading, please wait...</div>
-    </div>
-  
-    <!-- a-frame scene -->
-    <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-    >
-      <!-- a-nft is the anchor that defines an Image Tracking entity -->
-      <!-- on 'url' use the path to the Image Descriptors created before. -->
-      <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-      <a-nft
-        type="nft"
-        url="http://127.0.0.1:5500/reconnaissance/20250429_151257"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-      >
-        <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-        <!-- <a-entity
-          gltf-model="<path-to-your-model>"
-          scale="5 5 5"
-          position="50 150 0"
-        >
-        </a-entity> -->
-      </a-nft>
-      <!-- static camera that moves according to the device movemenents -->
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      <!-- Caméra AR (fourni par AR.js via a-marker-camera ou a-entity camera) -->
+      <a-marker preset="hiro">
+        <a-box position="0 0.5 0" rotation="0 45 0" color="red"></a-box>
+      </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
   </body>
